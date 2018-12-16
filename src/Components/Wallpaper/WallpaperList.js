@@ -9,10 +9,6 @@ class WallpaperList extends Component<Props> {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      spinnerShow: true,
-    };
   };
 
   // After Load Class
@@ -25,7 +21,7 @@ class WallpaperList extends Component<Props> {
     return (
       <View>
         <Spinner show={this.props.searchSpinner}/>
-        <ScrollView contentContainerStyle={styles.scrollView} keyboardShouldPersistTaps={false}>
+        <ScrollView contentContainerStyle={styles.scrollView}>
           <Items renderData={this.props.searchApiData.images}/>
         </ScrollView>
       </View>
