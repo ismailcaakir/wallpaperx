@@ -41,7 +41,6 @@ class Search extends Component {
   };
 
   searchInputStatus() {
-    console.log('!');
     if (this.state.searchInputStatus) {
       this.refs.searchInput._root.focus()
     } else {

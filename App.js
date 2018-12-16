@@ -26,7 +26,7 @@ export default class App extends Component<Props> {
 
     return (
       <Provider store={store}>
-        <View>
+        <View style={{flex: 1}}>
           <Home />
         </View>
       </Provider>

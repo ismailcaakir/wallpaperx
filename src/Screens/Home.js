@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
 import { Search, WallpaperList } from '../Components';
 
 class Home extends Component {
@@ -23,9 +23,13 @@ class Home extends Component {
   // Render Components
   render() {
     return (
-      <View>
-        <Search />
-        <WallpaperList />
+      <View style={{flex: 1}}>
+        <View style={{flex: 1}}>
+          <Search />
+        </View>
+        <SafeAreaView style={{flex: 11}}>
+          <WallpaperList />
+        </SafeAreaView>
       </View>
     );
   }
@@ -33,7 +37,7 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-    
+
 });
 
 export default Home;

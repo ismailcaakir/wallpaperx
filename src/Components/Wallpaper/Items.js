@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { FlatList, View, StyleSheet, Image } from 'react-native';
-import { Thumbnail } from 'native-base';
 
 class Items extends Component {
 
@@ -9,8 +8,8 @@ class Items extends Component {
         <View >
           <FlatList contentContainerStyle={styles.container}
             data={this.props.renderData}
-            numColumns={2}
-            renderItem={({item}) => <View style={styles.item}><Image source={{uri: item.thumb, width: '100%', height: 100}} /></View>}
+            numColumns={1}
+            renderItem={({item}) => <View style={styles.item}> <Image source={{uri: item.thumb, width: '100%', height: 150}} /> </View>}
           />
         </View>
     );
@@ -25,10 +24,10 @@ const styles = StyleSheet.create({
   },
 
   item: {
-    width: '50%',
+    width: '100%',
     backgroundColor: '#252525',
     margin: 4,
-
+    marginTop: 0,
   }
 });
 

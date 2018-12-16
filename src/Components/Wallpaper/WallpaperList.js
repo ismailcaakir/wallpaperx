@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ScrollView, Text } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Spinner, Items } from '../';
 import { connect } from 'react-redux';
 import { searchInputChanged, searchDataUpdated } from '../../App/Actions';
@@ -19,20 +19,19 @@ class WallpaperList extends Component<Props> {
   // Render Component
   render() {
     return (
-      <View>
-        <Spinner show={this.props.searchSpinner}/>
         <ScrollView contentContainerStyle={styles.scrollView}>
+          <Spinner show={this.props.searchSpinner}/>
           <Items renderData={this.props.searchApiData.images}/>
         </ScrollView>
-      </View>
     );
-  };
+  }
 
-}
+};
 
 const styles = StyleSheet.create({
     scrollView: {
-      height: 500,
+      flex: 1,
+      paddingBottom: 20,
     }
 });
 
