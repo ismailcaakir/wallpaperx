@@ -17,7 +17,7 @@ class Search extends Component {
 
   render() {
     return (
-        <NativeHeader searchBar={true} androidStatusBarColor={'#B00020'} style={{ backgroundColor: '#FFFFFF' }} iosBarStyle='light-content'>
+        <NativeHeader searchBar={true} androidStatusBarColor={'#B00020'} style={{ backgroundColor: '#FFFFFF', marginBottom: 10 }} iosBarStyle='light-content'>
             <Item>
               <Input
                 placeholder="Search Wallpaper"

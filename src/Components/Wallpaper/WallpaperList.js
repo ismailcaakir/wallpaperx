@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { Spinner, Items } from '../';
 import { connect } from 'react-redux';
 import { searchInputChanged, searchDataUpdated } from '../../App/Actions';
@@ -16,12 +16,25 @@ class WallpaperList extends Component<Props> {
     this.props.searchInputChanged('Space');
   };
 
+  componentWillMount() {
+
+  }
+
   // Render Component
   render() {
+
+    if (this.props.searchSpinner) {
+      return (<Spinner show={this.props.searchSpinner}/>);
+    }
+
+    if (this.props.searchApiData.totalPages == 0 && this.props.searchApiData.images.length == 0) {
+      return (<Text style={styles.noResultsText}> No Results.</Text>);
+    }
+
+    console.log(this.props.searchApiData.images);
     return (
         <ScrollView contentContainerStyle={styles.scrollView}>
-          <Spinner show={this.props.searchSpinner}/>
-          <Items renderData={this.props.searchApiData.images}/>
+          <Items renderData={this.props.searchApiData.images} />
         </ScrollView>
     );
   }
@@ -30,9 +43,15 @@ class WallpaperList extends Component<Props> {
 
 const styles = StyleSheet.create({
     scrollView: {
-      flex: 1,
-      paddingBottom: 20,
+
+    },
+
+    noResultsText: {
+      fontSize: 18,
+      textAlign: 'center',
+      paddingTop: 15
     }
+
 });
 
 

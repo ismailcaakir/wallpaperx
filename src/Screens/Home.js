@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
+import { View, ScrollView, StyleSheet, SafeAreaView, Text } from 'react-native';
 import { Search, WallpaperList } from '../Components';
 
 class Home extends Component {
@@ -27,9 +27,9 @@ class Home extends Component {
         <View style={{flex: 1}}>
           <Search />
         </View>
-        <SafeAreaView style={{flex: 11}}>
+        <View style={{flex: 10, justifyContent: "space-between"}}>
           <WallpaperList />
-        </SafeAreaView>
+        </View>
       </View>
     );
   }

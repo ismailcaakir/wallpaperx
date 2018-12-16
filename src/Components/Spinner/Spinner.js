@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Spinner as NativeSpinner } from 'native-base';
-import { Text } from 'react-native';
+import { View } from 'react-native';
 
 class Spinner extends Component<Props> {
 
@@ -15,7 +15,7 @@ class Spinner extends Component<Props> {
       );
     } else {
       return (
-        <Text> </Text>
+        <View />
       );
     }
   }
