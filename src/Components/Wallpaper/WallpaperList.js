@@ -31,7 +31,6 @@ class WallpaperList extends Component<Props> {
       return (<Text style={styles.noResultsText}> No Results.</Text>);
     }
 
-    console.log(this.props.searchApiData.images);
     return (
         <ScrollView contentContainerStyle={styles.scrollView}>
           <Items renderData={this.props.searchApiData.images} />
@@ -45,13 +44,11 @@ const styles = StyleSheet.create({
     scrollView: {
 
     },
-
     noResultsText: {
       fontSize: 18,
       textAlign: 'center',
       paddingTop: 15
     }
-
 });
 
 

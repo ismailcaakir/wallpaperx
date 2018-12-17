@@ -11,7 +11,7 @@ class Items extends Component {
           <FlatList contentContainerStyle={styles.container}
             data={this.props.renderData}
             numColumns={2}
-            renderItem={({item}) => <Item thumb={item.thumb} /> }
+            renderItem={({item}) => <Item thumb={item.thumb} itemId={item.id}/> }
           />
         </View>
     );
