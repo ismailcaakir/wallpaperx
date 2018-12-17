@@ -4,36 +4,46 @@ import axios  from 'axios';
 
 export const searchInputChanged = (text) => {
   return (dispatch) => {
-    data = {end: true, totalPages: 0, images: []};
-    dispatch(searchDataUpdated(data));
-
-    status = true;
-    dispatch(searchSpinnerStatus(status));
 
     dispatch({
       type: SEARCH_INPUT_CHANGED,
       payload: text
     })
 
-    const keyword = text;
-    axios.get("https://wallhaven-api.now.sh/search", {
-        params: { keyword: keyword }
-      }).then((obj) => {
-        data = obj.data;
-        dispatch(searchDataUpdated(data));
-      }
-    );
+    keyword = text; nextPage = 1;
+    dispatch(searchDataUpdated(keyword, nextPage));
+
+    status = true;
+    dispatch(searchSpinnerStatus(status));
+
   };
 };
 
-export const searchDataUpdated = (data) => {
+export const searchDataUpdated = (keyword, nextPage, data = { end: true, totalPages: 1, images: [], currentPage: 1}) => {
   return (dispatch) => {
-    dispatch({
-      type: SEARCH_DATA_UPDATED,
-      payload: data
-    })
-    status = false;
-    dispatch(searchSpinnerStatus(status));
+
+
+    axios.get("https://wallhaven-api.now.sh/search", {
+        params: { keyword: keyword, page: nextPage }
+      }).then((obj) => {
+
+        data.end = obj.data.end;
+        data.totalPages = obj.data.totalPages;
+
+        if (obj.data.images.length > 0) {
+          data.images = data.images.concat(obj.data.images);
+        }
+
+        dispatch({
+          type: SEARCH_DATA_UPDATED,
+          payload: data
+        });
+
+        status = false;
+        dispatch(searchSpinnerStatus(status));
+      }
+    );
+
   };
 };
 

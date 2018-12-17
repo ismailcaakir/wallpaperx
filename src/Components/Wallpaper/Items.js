@@ -12,6 +12,7 @@ class Items extends Component {
             data={this.props.renderData}
             numColumns={2}
             renderItem={({item}) => <Item thumb={item.thumb} itemId={item.id}/> }
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
     );
