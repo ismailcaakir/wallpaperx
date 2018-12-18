@@ -1,4 +1,4 @@
-import { SEARCH_INPUT_CHANGED, SEARCH_DATA_UPDATED, SEARCH_SPINNER } from '../Keys';
+import { SEARCH_INPUT_CHANGED, SEARCH_DATA_UPDATED, SEARCH_SPINNER, SEARCH_LOAD_MORE_SPINNER } from '../Keys';
 
 const INITIAL_STATE = {
   query: 'Space',
@@ -17,6 +17,9 @@ export default (state = INITIAL_STATE, action) => {
       break;
     case SEARCH_SPINNER:
       return { ...state, searchSpinner: action.payload };
+    case SEARCH_LOAD_MORE_SPINNER:
+      console.log(action.payload);
+      return { ...state, searchLoadMoreSpinner: action.payload };
     default:
       return state;
   }

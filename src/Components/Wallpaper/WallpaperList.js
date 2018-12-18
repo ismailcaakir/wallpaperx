@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, View, Text, ToastAndroid } from 'react-native';
-import { Spinner, Items } from '../';
+import { StyleSheet, ScrollView, View, Text, ToastAndroid, TouchableOpacity } from 'react-native';
+import { Spinner, Items, LoadMoreButton } from '../';
 import { connect } from 'react-redux';
 import { searchInputChanged, searchDataUpdated } from '../../App/Actions';
 import axios from 'axios';
@@ -38,30 +38,12 @@ class WallpaperList extends Component<Props> {
     }
 
     return (
-        <ScrollView
-          contentContainerStyle={styles.scrollView}
-          onScroll={({nativeEvent}) => {
-            if (isCloseToBottom(nativeEvent)) {
-              this._loadMore(this.props.query, this.props.searchApiData.currentPage + 1, this.props.searchApiData)
-            }
-          }}
-          scrollEventThrottle={400}
-        >
+        <ScrollView contentContainerStyle={styles.scrollView}>
           <Items renderData={this.props.searchApiData.images} />
+          <LoadMoreButton showLoadMore={true}/>
         </ScrollView>
     );
   };
-
-  _loadMore(keyword, nextPage, data) {
-    console.log(data);
-    if (nextPage <= this.props.searchApiData.totalPages) {
-      ToastAndroid.showWithGravity("Loading more images.After just scroll down.",ToastAndroid.LONG,ToastAndroid.BOTTOM);
-      data.currentPage = nextPage;
-      this.props.searchDataUpdated(keyword, nextPage, data);
-    } else {
-      ToastAndroid.showWithGravity("That is all",ToastAndroid.LONG,ToastAndroid.BOTTOM);
-    }
-  }
 
 };
 
