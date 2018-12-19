@@ -18,7 +18,6 @@ export default (state = INITIAL_STATE, action) => {
     case SEARCH_SPINNER:
       return { ...state, searchSpinner: action.payload };
     case SEARCH_LOAD_MORE_SPINNER:
-      console.log(action.payload);
       return { ...state, searchLoadMoreSpinner: action.payload };
     default:
       return state;

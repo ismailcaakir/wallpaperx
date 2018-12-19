@@ -7,19 +7,39 @@
  */
 
 import React, {Component} from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, View, BackHandler} from 'react-native';
 
 // REDUX
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers  from './src/App/Reducers';
 import ReduxThunk from 'redux-thunk';
+import { Router, Scene, Actions } from 'react-native-router-flux';
 
 // APP
-import { Home } from './src/Screens';
+import { Home, Detail } from './src/Screens';
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  componentDidMount(){
+    BackHandler.addEventListener('hardwareBackPress', this._backAndroidHandler);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this._backAndroidHandler);
+  }
+
+  _backAndroidHandler = () => {
+      const scene = Actions.currentScene;
+      // alert(scene)
+      if (scene === 'homePage') {
+        BackHandler.exitApp();
+        return true;
+      }
+      Actions.pop();
+      return true;
+  };
 
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
@@ -27,7 +47,12 @@ export default class App extends Component<Props> {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
-          <Home />
+          <Router hideNavBar= "true">
+            <Scene key="root" hideNavBar={true}>
+              <Scene key="homePage" component={Home} title="PageOne" initial={true}/>
+              <Scene key="detailPage" component={Detail} title="PageTwo" />
+            </Scene>
+          </Router>
         </View>
       </Provider>
     );

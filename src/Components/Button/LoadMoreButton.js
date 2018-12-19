@@ -20,7 +20,7 @@ class LoadMoreButton extends Component<Props> {
     if (this.state.showLoadMore) {
       return (
         <Button full onPress={() => {this.loadMore()}} style={{backgroundColor: '#B00020'}}>
-          {this.props.searchLoadMoreSpinner == true ?  <Spinner color='#FFFFFF' /> : <Text>Load More Images</Text>}
+          {this.props.searchLoadMoreSpinner == true ? <Spinner color='#FFFFFF' /> : <Text>Load More Images</Text>}
         </Button>
       );
     } else {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Image, View, StyleSheet, ImageBackground, Text, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+
 
 class Item extends Component<Props> {
 
@@ -10,7 +12,7 @@ class Item extends Component<Props> {
   render() {
     return (
       <View style={styles.item}>
-        <TouchableOpacity onPress={ () => { console.log("TIKLADIN") } }>
+        <TouchableOpacity onPress={ () => { Actions.detailPage({itemId: this.props.itemId}) } }  onLongPress={this._onPressInItem}>
           <ImageBackground source={{uri: this.props.thumb}} style={{width: '100%', height: "100%"}}>
 
           </ImageBackground>
@@ -18,6 +20,10 @@ class Item extends Component<Props> {
       </View>
 
     );
+  }
+
+  _onPressInItem = () => {
+    console.log('BASILI KALDI');
   }
 
 }

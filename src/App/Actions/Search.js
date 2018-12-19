@@ -27,8 +27,8 @@ export const searchDataUpdated = (keyword, nextPage, data = { end: true, totalPa
 
     axios.get("https://wallhaven-api.now.sh/search", {
         params: { keyword: keyword, page: nextPage }
+        // sorting: 'random', categories: ['people', 'general'], sketchy: false
       }).then((obj) => {
-
         data.end = obj.data.end;
         data.totalPages = obj.data.totalPages;
 
@@ -45,7 +45,11 @@ export const searchDataUpdated = (keyword, nextPage, data = { end: true, totalPa
         dispatch(searchSpinnerStatus(status));
         dispatch(searchLoadMoreSpinnerStatus(status));
       }
-    );
+    ).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+       // ADD THIS THROW error
+        throw error;
+    });
 
   };
 };
