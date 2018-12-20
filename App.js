@@ -37,8 +37,6 @@ export default class App extends Component<Props> {
         BackHandler.exitApp();
         return true;
       }
-      Actions.pop();
-      return true;
   };
 
   render() {
@@ -47,10 +45,10 @@ export default class App extends Component<Props> {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
-          <Router hideNavBar= "true">
+          <Router>
             <Scene key="root" hideNavBar={true}>
-              <Scene key="homePage" component={Home} title="PageOne" initial={true}/>
-              <Scene key="detailPage" component={Detail} title="PageTwo" />
+              <Scene key="homePage" component={Home} title="Home" initial={true}/>
+              <Scene key="detailPage" component={Detail} title="Details" rightTitle={'Deneme'}  />
             </Scene>
           </Router>
         </View>

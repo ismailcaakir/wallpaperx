@@ -26,8 +26,8 @@ export const searchDataUpdated = (keyword, nextPage, data = { end: true, totalPa
     dispatch(searchLoadMoreSpinnerStatus(status));
 
     axios.get("https://wallhaven-api.now.sh/search", {
-        params: { keyword: keyword, page: nextPage }
-        // sorting: 'random', categories: ['people', 'general'], sketchy: false
+        params: { keyword: keyword, page: nextPage, sorting: 'random', categories: ['people', 'general'] }
+        // categories: ['people', 'general'], sketchy: false
       }).then((obj) => {
         data.end = obj.data.end;
         data.totalPages = obj.data.totalPages;

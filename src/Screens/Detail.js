@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView, Image } from 'react-native'
+import { View, ImageBackground, TouchableOpacity } from 'react-native';
+import { Icon } from 'native-base';
+import { Actions } from 'react-native-router-flux';
+import { Spinner, DetailHeader } from '../Components';
+
 import axios  from 'axios';
 
 class Detail extends Component<Props> {
@@ -8,35 +12,31 @@ class Detail extends Component<Props> {
     super(props);
 
     this.state = {
-      fullImage: "null",
+      fullImage: null,
+      spinnerShow: true,
     };
+  }
+
+  componentWillMount() {
+
   }
 
   componentDidMount() {
     axios.get("https://wallhaven-api.now.sh/details/" + this.props.itemId, {})
     .then((obj) => {
-      data =  JSON.stringify(obj.data)
-      this.setState({ fullImage:});
-      //const fullImage = obj.data.fullImage;
+      this.setState({fullImage: obj.data.fullImage});
     });
-
-    //this.setState({fullImage: fullImage});
   }
 
   render() {
-
-    if (this.state.fullImage === "null") {
-      return (<Text> Yükleniyor </Text>);
-    }
-
     return (
       <View style={{flex: 1}}>
-        <SafeAreaView style={{flex: 10, justifyContent: "space-between"}}>
-          <Image
-            style={{width: '100%', height: this}}
-            source={{uri: this.state.fullImage}}
-          />
-        </SafeAreaView>
+        <View style={{flex: 1}}>
+          <DetailHeader />
+        </View>
+        <View style={{flex: 11}}>
+          {this.state.fullImage === null ? <Spinner show={true}/> : <ImageBackground source={{uri: this.state.fullImage}} resizeMethod={'auto'} style={{width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.7)'}} />}
+        </View>
       </View>
     );
   }
