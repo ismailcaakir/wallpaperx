@@ -12,7 +12,7 @@ class Item extends Component<Props> {
   render() {
     return (
       <View style={styles.item}>
-        <TouchableOpacity onPress={ () => { Actions.detailPage({itemId: this.props.itemId}) } }  onLongPress={this._onPressInItem}>
+        <TouchableOpacity onPress={ () => { Actions.detailPage({itemId: this.props.itemId}) } }>
           <ImageBackground source={{uri: this.props.thumb}} style={{width: '100%', height: "100%"}}>
 
           </ImageBackground>

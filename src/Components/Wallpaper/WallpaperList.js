@@ -3,7 +3,6 @@ import { StyleSheet, ScrollView, View, Text, ToastAndroid, TouchableOpacity } fr
 import { Spinner, Items, LoadMoreButton } from '../';
 import { connect } from 'react-redux';
 import { searchInputChanged, searchDataUpdated } from '../../App/Actions';
-import axios from 'axios';
 
 const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
   const paddingToBottom = 200;
