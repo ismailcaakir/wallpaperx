@@ -1,5 +1,6 @@
 import RNFetchBlob from 'rn-fetch-blob';
 import { Alert } from 'react-native';
+import Wallpaper from 'rnwallpaper';
 
 
 export function downloadImage(url) {
@@ -25,6 +26,25 @@ export function downloadImage(url) {
   } catch (err) {
     console.log(err)
   }
+}
+
+export function setAsWallpaper(imageUrl) {
+
+  Wallpaper.setWallpaper(imageUrl, (res) => {
+    Alert.alert("Success", "Added as wallpaper", [ {text: 'Thanks!', onPress: () => openInterstitialAds() },], { cancelable: false });
+  });
+
+
+  /*Alert.alert('Set as Wallpaper', 'Do you approve this picture as wallpaper?', [
+    {text: 'Okay!', onPress: () => {
+      Wallpaper.setWallpaper(imageUrl, (res) => {
+        Alert.alert("Success", "Added as wallpaper", [ {text: 'Thanks!', onPress: () => openInterstitialAds() },], { cancelable: false });
+      })
+    }},
+    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}
+  ])*/
+
+
 }
 
 

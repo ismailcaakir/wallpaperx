@@ -1,4 +1,6 @@
 rootProject.name = 'WallpaperxPlus'
+include ':rnwallpaper'
+project(':rnwallpaper').projectDir = new File(rootProject.projectDir, '../node_modules/rnwallpaper/android')
 include ':rn-fetch-blob'
 project(':rn-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/rn-fetch-blob/android')
 

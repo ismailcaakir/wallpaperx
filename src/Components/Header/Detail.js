@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Alert, PermissionsAndroid, TouchableOpacity } from 'react-native';
 import { Header as NativeHeader, Item, Icon, Button, Input, Text, Left, Body, Right, Title} from 'native-base';
 import { writeExternalStoragePermissions } from '../../App/Permissions/Android';
-import { downloadImage } from '../../App/Helpers';
+import { downloadImage, setAsWallpaper } from '../../App/Helpers';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
@@ -26,7 +26,7 @@ class Detail extends Component {
           </Body>
           <Right>
             <TouchableOpacity>
-              <Button transparent disabled={this.props.spinner} onPress={() => { Alert.alert('Arka Plan Olarak Ayarlandı')}}>
+              <Button transparent disabled={this.props.spinner} onPress={() => { this.setAsWallpaper()}}>
                 <Icon style={styles.color} name='images' />
               </Button>
             </TouchableOpacity>
@@ -55,6 +55,10 @@ class Detail extends Component {
 
     });
 
+  }
+
+  setAsWallpaper() {
+    setAsWallpaper(this.props.data.fullImage);
   }
 
 }

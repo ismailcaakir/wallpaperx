@@ -16,7 +16,8 @@
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "rn-fetch-blob": "^0.10.14"
+    "rn-fetch-blob": "^0.10.14",
+    "rnwallpaper": "^1.2.1"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
