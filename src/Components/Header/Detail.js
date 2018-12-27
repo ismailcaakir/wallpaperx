@@ -7,7 +7,6 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-
 class Detail extends Component {
 
   constructor(props) {
@@ -76,22 +75,15 @@ class Detail extends Component {
 
   setAsWallpaper() {
 
-      this.setState({loading: true});
-      /*setAsWallpaper(this.props.data.fullImage).then((res) => {
-          this.setState({loading: false});
-      });*/
-    /*Alert.alert('Set as Wallpaper', 'Do you approve this picture as wallpaper?', [
+    Alert.alert('Set as Wallpaper', 'Do you approve this picture as wallpaper?', [
         {text: 'Okay!', onPress: () => { this._processingSetAsWallpaper(); }},
         {text: 'Cancel', style: 'cancel'}
-    ]);*/
+    ]);
 
   }
 
   _processingSetAsWallpaper(){
-      this.setState({loading: true});
-      setAsWallpaper(this.props.data.fullImage).then((res) => {
-          this.setState({loading: false});
-      });
+
   }
 
 }
