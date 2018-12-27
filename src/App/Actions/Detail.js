@@ -8,7 +8,7 @@ export const detailItemIdChanged = (itemId) => {
     dispatch({
       type: DETAIL_ITEM_ID_CHANGED,
       payload: itemId
-    })
+    });
 
     dispatch({
       type: DETAIL_DATA_UPDATED,

@@ -12,7 +12,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, query: action.payload };
       break;
     case SEARCH_DATA_UPDATED:
-      data = { ...state.searchApiData, images: action.payload.images, end: action.payload.end, totalPages: action.payload.totalPages, currentPage: action.payload.currentPage};
+      let data = { ...state.searchApiData, images: action.payload.images, end: action.payload.end, totalPages: action.payload.totalPages, currentPage: action.payload.currentPage};
       return { ...state, searchApiData: data};
       break;
     case SEARCH_SPINNER:

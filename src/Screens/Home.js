@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, SafeAreaView, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Search, WallpaperList } from '../Components';
 
 class Home extends Component {

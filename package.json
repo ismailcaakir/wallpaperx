@@ -8,16 +8,15 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "native-base": "^2.8.2",
+    "native-base": "^2.10.0",
     "react": "16.6.3",
     "react-native": "0.57.8",
+    "react-native-loading-spinner-overlay": "^1.0.1",
     "react-native-router-flux": "^4.0.6",
-    "react-native-wallpaper-manager": "^0.3.16",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "rn-fetch-blob": "^0.10.14",
-    "rnwallpaper": "^1.2.1"
+    "rn-fetch-blob": "^0.10.15"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

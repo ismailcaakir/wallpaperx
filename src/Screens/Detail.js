@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { View, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, ImageBackground } from 'react-native';
 import { Spinner, DetailHeader } from '../Components';
 import { connect } from 'react-redux';
 import { detailItemIdChanged, detailDataUpdated } from '../App/Actions';
-
-import axios  from 'axios';
 
 class Detail extends Component<Props> {
 

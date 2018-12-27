@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, View, Text, ToastAndroid, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, Text } from 'react-native';
 import { Spinner, Items, LoadMoreButton } from '../';
 import { connect } from 'react-redux';
 import { searchInputChanged, searchDataUpdated } from '../../App/Actions';
@@ -32,7 +32,7 @@ class WallpaperList extends Component<Props> {
       return (<Spinner show={this.props.searchSpinner}/>);
     }
 
-    if (this.props.searchApiData.totalPages == 0 && this.props.searchApiData.images.length == 0) {
+    if (this.props.searchApiData.totalPages === 0 && this.props.searchApiData.images.length === 0) {
       return (<Text style={styles.noResultsText}> No Results.</Text>);
     }
 

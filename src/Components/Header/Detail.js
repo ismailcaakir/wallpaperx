@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import { StyleSheet, Alert, PermissionsAndroid, TouchableOpacity } from 'react-native';
-import { Header as NativeHeader, Item, Icon, Button, Input, Text, Left, Body, Right, Title} from 'native-base';
+import { StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import { Header as NativeHeader, Icon, Button, Left, Body, Right, Title} from 'native-base';
 import { writeExternalStoragePermissions } from '../../App/Permissions/Android';
 import { downloadImage, setAsWallpaper } from '../../App/Helpers';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 
 class Detail extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      loading: false,
+    }
   }
 
   render() {
@@ -39,18 +44,30 @@ class Detail extends Component {
               <Icon style={styles.color} name='share' />
             </Button>
           </Right>
+          <Spinner
+              visible={this.state.loading}
+              textContent={'Loading...'}
+              textStyle={styles.spinnerTextStyle}
+          />
         </NativeHeader>
     );
   }
 
   download(){
 
+
     writeExternalStoragePermissions().then((granted) => {
 
-      if (!granted) {
+      this.setState({loading: true});
+
+      if (!granted)
+      {
+        this.setState({loading: false});
         Alert.alert('Permissions error.','Please open storage permissions for this application.');
       } else {
-        downloadImage(this.props.data.fullImage);
+        downloadImage(this.props.data.fullImage).then((res) => {
+          this.setState({loading: false});
+        });
       }
 
     });
@@ -58,13 +75,32 @@ class Detail extends Component {
   }
 
   setAsWallpaper() {
-    setAsWallpaper(this.props.data.fullImage);
+
+      this.setState({loading: true});
+      /*setAsWallpaper(this.props.data.fullImage).then((res) => {
+          this.setState({loading: false});
+      });*/
+    /*Alert.alert('Set as Wallpaper', 'Do you approve this picture as wallpaper?', [
+        {text: 'Okay!', onPress: () => { this._processingSetAsWallpaper(); }},
+        {text: 'Cancel', style: 'cancel'}
+    ]);*/
+
+  }
+
+  _processingSetAsWallpaper(){
+      this.setState({loading: true});
+      setAsWallpaper(this.props.data.fullImage).then((res) => {
+          this.setState({loading: false});
+      });
   }
 
 }
 
 const styles = StyleSheet.create({
-  color: { color: '#262626'}
+    color: { color: '#262626'},
+    spinnerTextStyle: {
+      color: '#FFF'
+    },
 });
 
 const mapStateToProps = ({detailResponse}) => {
