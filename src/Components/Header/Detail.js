@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, Alert, TouchableOpacity, Share } from 'react-native';
 import { Header as NativeHeader, Icon, Button, Left, Body, Right, Title} from 'native-base';
 import { writeExternalStoragePermissions } from '../../App/Permissions/Android';
 import { downloadImage, setAsWallpaper } from '../../App/Helpers';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
+
 
 class Detail extends Component {
 
@@ -39,7 +40,7 @@ class Detail extends Component {
                 <Icon style={styles.color} name='download' />
               </Button>
             </TouchableOpacity>
-            <Button transparent disabled={this.props.spinner} onPress={() => { Alert.alert('Paylaşılıyor.')}}>
+            <Button transparent disabled={this.props.spinner} onPress={ () => { this.onSharePress() } }>
               <Icon style={styles.color} name='share' />
             </Button>
           </Right>
@@ -52,8 +53,7 @@ class Detail extends Component {
     );
   }
 
-  download(){
-
+  download = () => {
 
     writeExternalStoragePermissions().then((granted) => {
 
@@ -71,21 +71,24 @@ class Detail extends Component {
 
     });
 
-  }
+  };
 
-  setAsWallpaper() {
+  setAsWallpaper = () => {
 
     Alert.alert('Set as Wallpaper', 'Do you approve this picture as wallpaper?', [
         {text: 'Okay!', onPress: () => { this._processingSetAsWallpaper(); }},
         {text: 'Cancel', style: 'cancel'}
     ]);
 
-  }
+  };
 
-  _processingSetAsWallpaper(){
+  onSharePress = (data) => {
+      
+  };
 
-  }
+  _processingSetAsWallpaper() {
 
+  };
 }
 
 const styles = StyleSheet.create({
